@@ -52,9 +52,7 @@ export async function mealsRoutes(app: FastifyInstance) {
         user_id: z.string(),
         id: z.string(),
       })
-      // const { id } = mealsSchema.parse(request.params)
       const { id, user_id } = mealsSchema.parse(request.query)
-      // const { user_id } = mealsSchema.parse(request.headers)
       const meals = await knex('meals')
         .where({
           user_id,
@@ -100,7 +98,7 @@ export async function mealsRoutes(app: FastifyInstance) {
 
       const { user_id, id } = mealQuerySchema.parse(request.query)
       const { name, description, hasOk } = mealsSchema.parse(request.body)
-      console.log(user_id)
+
       const meals = await knex('meals')
         .where({
           user_id,

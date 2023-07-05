@@ -43,9 +43,7 @@ describe('Users routes', () => {
 
     const userId = allUsers.body.users[0].id
 
-    const getUser = await request(app.server)
-      .get(`/users/${userId}`)
-      .expect(200)
+    const getUser = await request(app.server).get(`/users/details`).query(`id=${userId}`)
 
     expect(getUser.body.user).toEqual(
       expect.objectContaining({
